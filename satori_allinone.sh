@@ -149,15 +149,17 @@ stringwith_date=$(date +"%Y%m%d")
 echo '--> '.$stringwith_date.zip
 mv ${HOME}/satori.zip ${dir_archive}/satori.${stringwith_date}.zip
 cd ${HOME}/.satori
-
+set -x
+log_info "Will proceed with install.sh from satori.zip:.satori"
 ##install satori service
-bash ./install.sh 
- 
-sudo groupadd docker
-sudo usermod -aG docker $USER
+ret_install=$(/bin/bash ./install.sh)
+
+log_info "we passed 'install.sh'"
+#sudo groupadd docker
+#sudo usermod -aG docker $USER
 newgrp docker
 sed -i "s/#User=.*/User=$USER/" "$(pwd)/satori.service"
-sed -i "s|WorkingDirectory=.*|WorkingDirectory=$(pwd)|" "$(pwd)/satori.service"
+sed -i "s|man newWorkingDirectory=.*|WorkingDirectory=$(pwd)|" "$(pwd)/satori.service"
 sudo cp satori.service /etc/systemd/system/satori.service
 sudo systemctl daemon-reload
 sudo systemctl enable satori.service
