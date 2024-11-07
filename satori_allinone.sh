@@ -160,13 +160,22 @@ log_info "we passed 'install.sh'"
 #log_info "newgrp..."
 #not sure it make sens since i do all in root(yeah yeah..)
 #newgrp docker
-log_info "will do first sed"
-sed -i "s/#User=.*/User=$USER/" "$(pwd)/satori.service"
-log_info "will do first sed"
-sed -i "s|man newWorkingDirectory=.*|WorkingDirectory=$(pwd)|" "$(pwd)/satori.service"
-sudo cp satori.service /etc/systemd/system/satori.service
+##log_info "will do first sed"
+##sed -i "s/#User=.*/User=$USER/" "$(pwd)/satori.service"
+##log_info "will do first sed"
+##sed -i "s|man newWorkingDirectory=.*|WorkingDirectory=$(pwd)|" "$(pwd)/satori.service"
+log_info "will download satori"
+wget -O /etc/systemd/system/satori.service https://raw.githubusercontent.com/enoola/satori-toolset/refs/heads/main/satori.service.root_static
+
+log_info "service downloaded"
+
+log_info "we will reaload daemon"
 sudo systemctl daemon-reload
+log_info "time to enable satori service"
+
 sudo systemctl enable satori.service
+
+log_info "time to start satori service"
 sudo systemctl start satori.service
 
 
