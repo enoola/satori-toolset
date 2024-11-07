@@ -57,6 +57,8 @@ SCRIPT_USAGE="$0"
 #
 # Ajout des sources pour les repo PC X64 :
 
+HOME="/root"
+
 # Import varoan;es
 FILEPATH_OS_RELEASE="/etc/os-release"
 . "${FILEPATH_OS_RELEASE}"
@@ -149,13 +151,11 @@ cd "${HOME}"
 wget -P "${HOME}" https://satorinet.io/static/download/linux/satori.zip
 unzip "${HOME}/satori.zip"
 stringwith_date=$(date +"%Y%m%d")
-echo '--> '.$stringwith_date.zip
+#echo '--> '.$stringwith_date.zip
 mv ${HOME}/satori.zip ${dir_archive}/satori.${stringwith_date}.zip
 cd ${HOME}/.satori
-set -x
+#set -x
 
-log_info "will stop"
-exit 0
 #log_info "Will proceed with install.sh from satori.zip:.satori"
 ##install satori service
 
