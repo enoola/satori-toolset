@@ -1,0 +1,13 @@
+#runonce_my_satoriinstaller.service
+[Unit]
+Description=Run Satori All-in-One Script at Startup
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/etc/init.d/run_mysetup_satori.sh
+Type=oneshot
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

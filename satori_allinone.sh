@@ -16,6 +16,9 @@ set -euo pipefail
 # u: exits on undefined variables
 # o pipefail: exits if any command in a pipe fails
 
+if [ -d /root/.satori ]; then
+   echo "folder /root/.satori exists we should not run it again"
+fi
 
 ##                           ##
 #  ----    FUNCTIONS    ----- #
@@ -178,4 +181,7 @@ sudo systemctl enable satori.service
 log_info "time to start satori service"
 sudo systemctl start satori.service
 
-
+log_info "cleaning time"
+rm -fv /etc/ini.d/run_mysetup_satori.sh
+systemctl disable runonce_my_satoriinstaller.sh
+rm -fv /etc/systemd/system/runonce_my_satoriinstaller.sh
