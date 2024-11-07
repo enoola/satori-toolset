@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 #aim : install required packages post OS install, tested on :
 #  - ubuntu server minimalist
 # 06/11/2024, 00:40
@@ -57,7 +55,7 @@ SCRIPT_USAGE="$0"
 #
 # Ajout des sources pour les repo PC X64 :
 
-HOME="/root"
+#HOME="/root"
 
 # Import varoan;es
 FILEPATH_OS_RELEASE="/etc/os-release"
@@ -159,7 +157,7 @@ cd ${HOME}/.satori
 #log_info "Will proceed with install.sh from satori.zip:.satori"
 ##install satori service
 
-ret_install=$(/bin/bash ./install.sh)
+##ret_install=$(/bin/bash ./install.sh)
 
 log_info "we passed 'install.sh'"
 #sudo groupadd docker
@@ -173,6 +171,11 @@ log_info "we passed 'install.sh'"
 ##sed -i "s|man newWorkingDirectory=.*|WorkingDirectory=$(pwd)|" "$(pwd)/satori.service"
 log_info "will download satori"
 wget -O /etc/systemd/system/satori.service https://raw.githubusercontent.com/enoola/satori-toolset/refs/heads/main/satori.service.root_static
+
+exit 0
+#below will need to be executed at first login from root
+ret_install=$(/bin/bash ./install.sh)
+
 
 log_info "service downloaded"
 
