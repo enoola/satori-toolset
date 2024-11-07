@@ -2,7 +2,7 @@
 [Unit]
 Description=Run Satori All-in-One Script at Startup
 Wants=network-online.target
-After=network-online.target
+After=network-online.target multi-user.target default.target
 
 [Service]
 ExecStart=/etc/init.d/run_mysetup_satori.sh

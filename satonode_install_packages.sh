@@ -114,6 +114,3 @@ log_info "Docker seems ok, let's proceed with the binaries"
 
 
 
-
-
-
