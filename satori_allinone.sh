@@ -172,7 +172,6 @@ log_info "we passed 'install.sh'"
 log_info "will download satori"
 wget -O /etc/systemd/system/satori.service https://raw.githubusercontent.com/enoola/satori-toolset/refs/heads/main/satori.service.root_static
 
-exit 0
 #below will need to be executed at first login from root
 ret_install=$(/bin/bash ./install.sh)
 
