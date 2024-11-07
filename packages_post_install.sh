@@ -3,7 +3,6 @@
 # ./packages_post_install.sh
 
 
-
 ar_packages_to_install="\
 cron \
 net-tools \
@@ -12,7 +11,9 @@ nano \
 rsync \
 net-tools \
 jq \
+htop \
 zip \
+unzip \
 curl \
 cron \
 inetutils-tools"

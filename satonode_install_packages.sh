@@ -106,5 +106,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 # Tester que Docker fonctionne :
 sz_expected_output='Hello from Docker'
 ret_dockerrun=$(sudo docker run hello-world | grep "$sz_expected_output")
-test -z "${ret_dockerrun}" && exit 1 || \
-exit 0
+if test -z "${ret_dockerrun}"; then
+	exit 1
+fi
+
+log_info "Docker seems ok, let's proceed with the binaries"
+
+
+
+
+
+
