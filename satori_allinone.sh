@@ -120,7 +120,7 @@ sudo apt-get update
 log_info "Time to proceed with Docker installation😁"
 
 ## Installation de docker :
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Tester que Docker fonctionne :
 sz_expected_output='Hello from Docker'
@@ -132,10 +132,10 @@ fi
 log_info "Docker seems ok, let's proceed with the binaries"
 
 ## isntall python environment
-sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get install --yes software-properties-common
+sudo add-apt-repository --yes ppa:deadsnakes/ppa
 sudo apt-get update
-sudo apt-get install python3.10 python3.10-venv
+sudo apt-get install --yes python3.10 python3.10-venv
 python3.10 --version
 sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
 
@@ -150,5 +150,17 @@ echo '--> '.$stringwith_date.zip
 mv ${HOME}/satori.zip ${dir_archive}/satori.${stringwith_date}.zip
 cd ${HOME}/.satori
 
+##install satori service
+bash ./install.sh 
+ 
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+sed -i "s/#User=.*/User=$USER/" "$(pwd)/satori.service"
+sed -i "s|WorkingDirectory=.*|WorkingDirectory=$(pwd)|" "$(pwd)/satori.service"
+sudo cp satori.service /etc/systemd/system/satori.service
+sudo systemctl daemon-reload
+sudo systemctl enable satori.service
+sudo systemctl start satori.service
 
 
