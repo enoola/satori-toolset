@@ -153,8 +153,12 @@ echo '--> '.$stringwith_date.zip
 mv ${HOME}/satori.zip ${dir_archive}/satori.${stringwith_date}.zip
 cd ${HOME}/.satori
 set -x
-log_info "Will proceed with install.sh from satori.zip:.satori"
+
+log_info "will stop"
+exit 0
+#log_info "Will proceed with install.sh from satori.zip:.satori"
 ##install satori service
+
 ret_install=$(/bin/bash ./install.sh)
 
 log_info "we passed 'install.sh'"
