@@ -157,8 +157,12 @@ ret_install=$(/bin/bash ./install.sh)
 log_info "we passed 'install.sh'"
 #sudo groupadd docker
 #sudo usermod -aG docker $USER
-newgrp docker
+#log_info "newgrp..."
+#not sure it make sens since i do all in root(yeah yeah..)
+#newgrp docker
+log_info "will do first sed"
 sed -i "s/#User=.*/User=$USER/" "$(pwd)/satori.service"
+log_info "will do first sed"
 sed -i "s|man newWorkingDirectory=.*|WorkingDirectory=$(pwd)|" "$(pwd)/satori.service"
 sudo cp satori.service /etc/systemd/system/satori.service
 sudo systemctl daemon-reload
